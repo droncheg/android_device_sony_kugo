@@ -56,8 +56,8 @@ PRODUCT_PACKAGES += \
     fingerprint.kugo
 
 # NFC config
-PRODUCT_PACKAGES += \
-    nfc_nci.kugo
+# PRODUCT_PACKAGES += \
+#     nfc_nci.kugo
 
 # Telephony Packages (AOSP)
 PRODUCT_PACKAGES += \
