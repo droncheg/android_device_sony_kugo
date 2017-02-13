@@ -12,7 +12,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-include device/sony/loire/PlatformConfig.mk
+include device/sony/loire-common/PlatformConfig.mk
+include device/sony/loire-common/PlatformConfig2.mk
 
 TARGET_BOOTLOADER_BOARD_NAME := F5321
 
