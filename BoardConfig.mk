@@ -24,3 +24,4 @@ BOARD_USERDATAIMAGE_PARTITION_SIZE := 23894933504
 
 #TARGET_TAP_TO_WAKE_NODE := "/sys/devices/virtual/input/clearpad/wakeup_gesture"
 BOARD_HARDWARE_CLASS += device/sony/kugo/cmhw
+TARGET_OTA_ASSERT_DEVICE := F5321,kugo
