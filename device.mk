@@ -28,6 +28,21 @@ PRODUCT_COPY_FILES := \
     $(DEVICE_PATH)/rootdir/system/etc/libnfc-nxp.conf:system/etc/libnfc-nxp.conf \
     $(DEVICE_PATH)/rootdir/system/etc/mixer_paths.xml:system/etc/mixer_paths.xml
 
+# Camera Configuration
+PRODUCT_COPY_FILES += \
+    $(DEVICE_PATH)/rootdir/system/etc/camera/camera_config.xml:system/etc/camera/camera_config.xml \
+    $(DEVICE_PATH)/rootdir/system/etc/camera/imx241_chromatix.xml:system/etc/camera/imx241_chromatix.xml \
+    $(DEVICE_PATH)/rootdir/system/etc/camera/imx300_chromatix.xml:system/etc/camera/imx300_chromatix.xml
+
+PRODUCT_COPY_FILES += \
+    $(DEVICE_PATH)/rootdir/system/etc/acdbdata/Bluetooth_cal.acdb:system/etc/acdbdata/Bluetooth_cal.acdb \
+    $(DEVICE_PATH)/rootdir/system/etc/acdbdata/General_cal.acdb:system/etc/acdbdata/General_cal.acdb \
+    $(DEVICE_PATH)/rootdir/system/etc/acdbdata/Global_cal.acdb:system/etc/acdbdata/Global_cal.acdb \
+    $(DEVICE_PATH)/rootdir/system/etc/acdbdata/Handset_cal.acdb:system/etc/acdbdata/Handset_cal.acdb \
+    $(DEVICE_PATH)/rootdir/system/etc/acdbdata/Hdmi_cal.acdb:system/etc/acdbdata/Hdmi_cal.acdb \
+    $(DEVICE_PATH)/rootdir/system/etc/acdbdata/Headset_cal.acdb:system/etc/acdbdata/Headset_cal.acdb \
+    $(DEVICE_PATH)/rootdir/system/etc/acdbdata/Speaker_cal.acdb:system/etc/acdbdata/Speaker_cal.acdb
+
 # Device Specific Permissions
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/handheld_core_hardware.xml:system/etc/permissions/handheld_core_hardware.xml \
@@ -74,7 +89,11 @@ PRODUCT_PROPERTY_OVERRIDES := \
 
 # Inherit from those products. Most specific first.
 $(call inherit-product, device/sony/loire-common/platform.mk)
-$(call inherit-product, vendor/sony/loire-kugo/kugo-vendor.mk)
-
+# copy NFC firmware
+$(call inherit-product-if-exists, vendor/nxp/nxp-vendor.mk)
+# include board vendor blobs
+$(call inherit-product-if-exists, vendor/sony/sony-kugo/loire-common/loire-partial.mk)
 # copy wlan firmware
 $(call inherit-product-if-exists, vendor/broadcom/wlan/bcmdhd/firmware/bcm4345/device-bcm.mk)
+# include optional vendor configuration
+$(call inherit-product-if-exists, vendor/qcom/proprietary/common/build/qcom-packages.mk)
